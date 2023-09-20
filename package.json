@@ -1,0 +1,22 @@
+{
+  "name": "ofac-api-developers",
+  "version": "1.0.0",
+  "description": "OFAC API developer resources.",
+  "main": "index.js",
+  "author": "Joey Sikes",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "next": "^13.4.17",
+    "nextra": "^2.11.0",
+    "nextra-theme-docs": "^2.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  }
+}
