@@ -2,7 +2,11 @@ import { Tabs, Tab } from 'nextra/components'
 
 # OFAC API
 
-**OFAC API** allows your business to meet AML & KYC compliance requirements through integrations with the most important sanctions data from around the globe.
+**Introduction**
+
+This documentation covers the latest version of the Sanctions API and will guide you in configuring a search to meet your compliance needs. Below are general API examples. The parameters below are explained in more detail on the parameters documentation page.
+
+The Sanctions API is a RESTful JSON based web service that accepts HTTPS **<code>POST</code></strong> requests. Each request must contain your organization's <strong><code>apiKey</code></strong>, which may be passed within the request body or a request header field labeled <strong><code>apiKey</code></strong>.
 
 <Tabs items={['pnpm', 'npm', 'yarn']}>
   <Tab>**pnpm**: Fast, disk space efficient package manager.</Tab>
