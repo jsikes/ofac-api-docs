@@ -1,26 +1,12 @@
 import { Tabs, Tab } from 'nextra/components'
 
-# OFAC API
+# Sanctions API
 
 **Introduction**
 
 This documentation covers the latest version of the Sanctions API and will guide you in configuring a search to meet your compliance needs. Below are general API examples. The parameters below are explained in more detail on the parameters documentation page.
 
-<code>apiKey</code>
-
- ```html
- <!doctype html>
- <html lang="en">
-   <head>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>Bootstrap demo</title>
-   </head>
-   <body>
-     <h1>Hello, world!</h1>
-   </body>
- </html>
- ```
+OFAC API exposes a RESTful JSON based web service that accepts HTTPS **<code>POST</code>** requests. Each request must contain your organizations <code>apiKey</code>, which may be passed within the request body or a request header field labeled <code>apiKey</code>.
 
 
 <Tabs items={['pnpm', 'npm', 'yarn']}>
