@@ -1,26 +1,89 @@
 import { Tabs, Tab } from 'nextra/components'
+import { Callout } from 'nextra/components'
 
-# Sanctions API
+# **Welcome**
 
-**Introduction**
-
-This documentation covers the latest version of the Sanctions API and will guide you in configuring a search to meet your compliance needs. Below are general API examples. The parameters below are explained in more detail on the parameters documentation page.
-
-OFAC API exposes a RESTful JSON based web service that accepts HTTPS **<code>POST</code>** requests. Each request must contain your organizations <code>apiKey</code>, which may be passed within the request body or a request header field labeled <code>apiKey</code>.
-
-> **API URL**
->
-> <code>https://search.ofac-api.com/v4</code>
-
-***Quick Links***
-* Swagger API Documentation
-* Postman collection on GitHub
+## Introduction
+This documentation covers the latest version of the Sanctions API. 
+Below you will find common API examples, helpful resources and a quick start guide. <br />
+**You will need an API key which you can setup here.**
 
 
-<Tabs items={['pnpm', 'npm', 'yarn']}>
-  <Tab>**pnpm**: Fast, disk space efficient package manager.</Tab>
-  <Tab>**npm** is a package manager for the JavaScript programming language.</Tab>
-  <Tab>**Yarn** is a software packaging system.</Tab>
+### General Information
+The Sanctions API is a JSON based web service that accepts HTTPS **<code>POST</code>** requests. <br />
+API requests consist of:
+1. Authentication in the form of an **<code>apiKey</code>** header or parameter
+2. Information on the individual or entity you are screening. For example **name**, **address**, etc
+3. Search configuration settings including which **data sources** to screen against
+
+<Callout type="info">
+**API URL** <br />
+<code>https://v4.ofac-api.com/search</code>
+</Callout>
+
+## Quick start
+To get started, ensure you have an active API key and follow the steps below to
+send your first request to the API. 
+In addition to the code examples below, you may download our Postman collection which
+contains a preconfigured API request that only requires your unique API key. 
+
+#### 1. Code Examples
+The code snippets below demonstrate a basic API request to screen a single 
+individual, **Abu Abbas**, against the OFAC SDN and EU data sets. To execute these snippets, 
+replace <code>**your-api-key**</code> with your API key. 
+
+<Tabs items={['CURL', 'JS', 'Java']}>
+  <Tab>
+  ```c copy
+  curl 
+  -X POST https://search.ofac-api.com/v3 
+  -d '{"apiKey": "your-api-key", "source": ["SDN", "EU"], "cases": [{"name": "Abu Abbas"}]}' 
+  -H "Content-Type: application/json"
+  ```
+  </Tab>
+  <Tab>
+  ```js showLineNumbers copy
+  fetch('https://search.ofac-api.com/v3',
+    {
+      Method: 'POST',
+      Body: JSON.stringify({
+        "apiKey": "your-api-key",
+        "source": ["SDN", "EU"],
+        "cases": [{
+            "name": "Abu Abbas"
+          }]
+      }),
+    }
+  )
+  ```
+  </Tab>
+  <Tab>
+  ```java showLineNumbers copy
+  OkHttpClient client = new OkHttpClient();
+
+  RequestBody body = RequestBody.create(
+      MediaType.parse("application/json"), yourJsonRequest);
+
+  Request request = new Request.Builder()
+      .url("https://search.ofac-api.com/v3")
+      .post(body)
+      .build();
+
+  Call call = client.newCall(request);
+  Response response = call.execute();
+  ```
+  </Tab>
 </Tabs>
 
-Hello, world!
+#### 2. Next Steps
+Once a succesfull request has been made to the API, you should review the additional
+**API parameters** to further customize sanctions screening performed by the API. In 
+particular, specifying which **Data Sources** the API should screen your case/s against. 
+
+Also, examine all available **search data*8 that may be provided to the API for screening, 
+for example address, various IDs, date of both and so on. 
+
+
+## Links and Resources
+* Swagger API Documentation
+* Postman collection on GitHub
