@@ -1,20 +1,17 @@
 import { Tabs, Tab } from 'nextra/components'
 import { Callout } from 'nextra/components'
 
-# **Welcome**
-
-## Introduction
-This documentation covers the latest version of the Sanctions API. 
-Below you will find common API examples, helpful resources and a quick start guide. <br />
-**You will need an API key which you can setup here.**
-
+# Welcome
+This is the documentation for the Sanctions API, which is used to screen individuals, 
+entities, crypto IDs and more against sanctions and other watch lists in order to meet compliance laws. 
+Below you will find common API examples, helpful resources and a quick start guide and next steps.<br />
 
 ### General Information
 The Sanctions API is a JSON based web service that accepts HTTPS **<code>POST</code>** requests. <br />
-API requests consist of:
-1. Authentication in the form of an **<code>apiKey</code>** header or parameter
+Each API requests consists of:
+1. [Authentication](/using-api/authentication) in the form of an <code>apiKey</code> header or parameter
 2. Information on the individual or entity you are screening. For example **name**, **address**, etc
-3. Search configuration settings including which **data sources** to screen against
+3. Search configuration settings including which [Data Sources](/datasources) to screen against
 
 <Callout type="info">
 **API URL** <br />
@@ -22,15 +19,14 @@ API requests consist of:
 </Callout>
 
 ## Quick start
-To get started, ensure you have an active API key and follow the steps below to
-send your first request to the API. 
-In addition to the code examples below, you may download our Postman collection which
-contains a preconfigured API request that only requires your unique API key. 
+To get started, ensure you have an active API key and review the code examples below. 
+In addition to the code examples, you may download our **Postman collection** which
+contain a ready to use example request. 
 
 #### 1. Code Examples
-The code snippets below demonstrate a basic API request to screen a single 
+The code snippets below demonstrate a basic API request used to screen a single 
 individual, **Abu Abbas**, against the OFAC SDN and EU data sets. To execute these snippets, 
-replace <code>**your-api-key**</code> with your API key. 
+replace <code>**your-api-key**</code> with your API key in your code.
 
 <Tabs items={['CURL', 'JS', 'Java']}>
   <Tab>
@@ -76,12 +72,12 @@ replace <code>**your-api-key**</code> with your API key.
 </Tabs>
 
 #### 2. Next Steps
-Once a succesfull request has been made to the API, you should review the additional
-**API parameters** to further customize sanctions screening performed by the API. In 
-particular, specifying which **Data Sources** the API should screen your case/s against. 
+Once you've made a successful API request, we recommend the following 
+1. Review additional [API parameters](/using-api/request) to further customize the screening process.
+2. Review the list of [Data Sources](/datasources) available for screening.
+3. Review the optional [Search Data Fields](/using-api/request) that can be used for screening.
 
-Also, examine all available **search data*8 that may be provided to the API for screening, 
-for example address, various IDs, date of both and so on. 
+
 
 
 ## Links and Resources

@@ -1,6 +1,7 @@
 {
   "index": "Introduction",
-  "data-sources": {
-    "title": "Data Sources"
-  }
+  "using-api": {
+    "title": "Using the Sanctions API"
+  },
+  "datasources": "Data Sources"
 }

@@ -1,0 +1,23 @@
+import { Callout } from 'nextra/components'
+
+# Authentication & Security
+
+The Sanctions API uses **API keys** to authenticate API requests. 
+Each request must contain yur organization's API key via an <code>apiKey</code> parameter or header. 
+
+## API Key
+The <code>apiKey</code> may be sent in 2 ways
+1. **Request Body** - Include an <code>apiKey</code> parameter within the API request.
+2. **Request Header** - Include an <code>apiKey</code> [request header](https://developer.mozilla.org/en-US/docs/Glossary/Request_header) with each request. 
+
+<Callout type="info">
+For examples of <code>apiKey</code> request parameters and headers, see the [example requests](/using-api/request)
+and the [Postman Collection](/using-api/postman) example on Github.
+</Callout>  
+
+
+## Security 
+<Callout type="info">
+All API requests must be made over **HTTPS**. Unencrypted **HTTP** requests will be rejected.
+</Callout>  
+

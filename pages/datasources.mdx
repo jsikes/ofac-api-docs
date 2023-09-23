@@ -1,0 +1,12 @@
+import { Tabs, Tab } from 'nextra/components'
+import { Callout } from 'nextra/components'
+
+# **Introduction**
+Below is a complete listing of data sources the **Sanctions API** screens against. 
+To specify which data source or sources you wish to screen against, include the 
+list code in the <code>source</code> request parameter. For example
+```js
+"source": ["SDN", "EU", "UK", "UN"]
+```
+
+Lists are refreshed every 15 minutes to ensure the API screens against the latest data. 
