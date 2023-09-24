@@ -1,0 +1,89 @@
+import { Callout } from "nextra/components";
+
+# API Request
+
+<br />
+
+### Sanctions Screening API
+
+<table>
+  <tbody>
+    <tr>
+      <td valign="top">
+        Screen **cases** (individuals, entities, vessels, crypto wallet IDs,
+        etc) for potential sanctions and other potential risk.
+        <Callout type="info">
+          **Batch screening** <br />
+          The **``` /search ```** endpoint accepts upto 1000 cases within a single
+          request for batch screening. Both individual and batch searches use the
+          same endpoint.
+        </Callout>
+      </td>
+      <td valign="top">
+        ```mdx filename="Endpoint" 
+        POST https://v4.ofac-api.com/search 
+        ```
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Request Object
+
+<table>
+  <tbody>
+    <tr>
+      <td valign="top" style={{width: '90%', overflow: 'hidden'}}>
+        **Attributes**
+        <hr />
+        <code>apiKey</code>
+      </td>
+
+      <td valign="top" style={{width: '10%', overflow: 'hidden'}}>
+```json filename="Request JSON"
+{
+  "apiKey": "your-api-key",
+  "minScore": 95,
+  "source": [
+    "SDN", "NONSDN"
+  ],
+  "type": [
+    "individual"
+  ],
+  "cases": [
+    {
+      "name": "Miguel Orejuela",
+      "dob": "1943-11-23",
+      "citizenship": "Columbia",
+      "phoneNumber": "6095803",
+      "type": "individual",
+      "address": {
+        "address1": "Casa 19",
+        "address2": "Unit 1",
+        "city": "Avenida Lago",
+        "stateOrProvince": "Ciudad Jardin",
+        "postalCode": "60",
+        "country": "Columbia"
+      },
+      "passport": {
+        "passportNumber": "9652210458739",
+        "passportCountry": "Columbia"
+      },
+      "driversLicense": {
+        "licenseCountry": "Columbia",
+        "licenseNumber": "g400-393-49053"
+      },
+      "gender": "male",
+      "taxId": "48930059",
+      "digitalCurrencyAddress": "0xa7e5d5a720f06526557c513402f2e6b5fa20b008"
+    }
+  ]
+}
+```
+      </td>
+    </tr>
+
+  </tbody>
+</table>

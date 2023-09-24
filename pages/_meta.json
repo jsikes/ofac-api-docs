@@ -1,7 +1,8 @@
 {
   "index": "Introduction",
-  "using-api": {
-    "title": "Using the Sanctions API"
+  "authentication": "Authentication",
+  "sanctions-api": {
+    "title": "Sanctions Screening API"
   },
   "datasources": "Data Sources"
 }
