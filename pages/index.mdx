@@ -2,28 +2,28 @@ import { Tabs, Tab } from 'nextra/components'
 import { Callout } from 'nextra/components'
 
 # Welcome
-This is the documentation for the Sanctions API, which is used to screen individuals, 
-entities, crypto IDs and more against sanctions and other watch lists in order to meet compliance laws. 
+This is the documentation for OFAC-API.com's web services, which are used to automate KYC and other
+compliance obligations such as sanctions checks and reporting. 
 Below you will find common API examples, helpful resources and a quick start guide and next steps.<br />
-
-### General Information
-The Sanctions API is a JSON based web service that accepts HTTPS **<code>POST</code>** requests. <br />
-Each API requests consists of:
-1. [Authentication](/authentication) in the form of an <code>apiKey</code> header or parameter
-2. Information on the individual or entity you are screening. For example **name**, **address**, etc
-3. Search configuration settings including which [Data Sources](/datasources) to screen against
 
 <Callout type="info">
 **Base API URL** <br />
 <code>https://v4.ofac-api.com/</code>
 </Callout>
 
+## General Information
+The [Sanctions API](/sanctions-api) is a JSON based web service that accepts HTTPS **<code>POST</code>** requests. <br />
+Each API requests consists of:
+1. [Authentication](/authentication) in the form of an ```apiKey``` header or parameter.
+2. Information on the [Case](/glossary#case) (individual, entity, etc) you are screening. For example **name** and **address**.
+3. Search configuration settings including which [Data Sources](/datasources) to screen against.
+
 ## Quick start
 To get started, ensure you have an active API key and review the code examples below. 
 In addition to the code examples, you may download our [Postman collection](/postman) which
 contain a ready to use example request. 
 
-#### 1. Code Examples
+### Code Examples
 The code snippets below demonstrate a basic API request used to screen a single 
 individual, **Abu Abbas**, against the OFAC SDN and EU data sets. To execute these snippets, 
 replace <code>**your-api-key**</code> with your API key in your code.
@@ -71,7 +71,7 @@ replace <code>**your-api-key**</code> with your API key in your code.
   </Tab>
 </Tabs>
 
-#### 2. Next Steps
+### Next Steps
 Once you've made a successful API request, we recommend the following 
 1. Review additional [API parameters](/sanctions-api/request) to further customize the screening process.
 2. Review the list of [Data Sources](/datasources) available for screening.
@@ -82,4 +82,4 @@ Once you've made a successful API request, we recommend the following
 
 ## Links and Resources
 * Swagger API Documentation
-* Postman collection on GitHub
+* a [Postman collection](/postman) is avaialble to help you get up and running 

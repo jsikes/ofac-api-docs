@@ -1,1 +1,55 @@
+import Link from 'next/link'
+import { Callout } from 'nextra/components'
+
 # Overview & Features
+
+## Basics 
+
+The **Sanctions API** allows you to send client information to be screened against the various sanctions
+listings as well as other risk watchlists such as PEP to comply 
+with **Know Your Customer (KYC)**, **Anti-Money Laundering (AML)** and other 
+common compliance obligations. 
+
+Searches may target individuals, entities such as companies, vessels and aircraft, various IDs
+and crypto wallet addresses. For more information of what can be supplied to the API for screening, 
+jump to the [API Request](/sanctions-api/request) section. 
+
+
+## Data Sources
+**Sanctions API** pulls risk data from a number of sources including global sanction and embargo
+listings, political publications, federal eligibility notifications and more. 
+
+Each data source is refreshed in accordance with its publication frequency to ensure that 
+screening is done against the most current version of data. 
+
+For a full listing of data sources, as well as their refresh rate, see the [Data Sources](/datasources) page 
+or download our <Link href="Data-Sources-OFAC-API.pdf" target="_blank">Data Sources brochure</Link>
+
+
+## Batch and Single Searches
+The **Sanctions API** allows both **batch** and **single** screening. Batch and single screening use
+the same endpoint, [API request structure](/sanctions-api/request) and both are [synchronous](https://developer.mozilla.org/en-US/docs/Glossary/Synchronous), meaning 
+results will be returned directly once the search is complete. 
+Screening a single entity can be thought of as a *batch of 1*.
+
+
+## Search Logic 
+OFAC-API's matching logic was designed in coordination with the US Treasury Department, based
+on *fuzzy logic* search guidelines. More on Treasury guidelines [here](https://ofac.treasury.gov/recent-actions/20210125). 
+
+### Search Customization
+The **Sanctions API** default search logic can be customized to meet your organizations needs. 
+Customization of search logic and results can be done via [API parameters](/request)
+and also **advanced settings** that we can configure on the back end. 
+<Callout type="info">
+**Sanctions API search logic is customizable.** Please contact us at **contact@ofac-api.com** if you would like to know more
+about advanced settings.
+</Callout>
+
+
+### Match Results and ```minScore```
+When a [**case**](/glossary#case) is screened, it is compared against each [**target**](/glossary#target) within
+the sanctions database and given a *similarity score*. The higher this score, the more similar the case is 
+to the target. The search results returned by the API are those [targets](/glossary#target) whose similarity score 
+is greater than or equal to the ```minScore``` API parameter you provide. 
+
