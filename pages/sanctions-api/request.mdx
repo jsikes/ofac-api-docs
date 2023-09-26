@@ -1,32 +1,34 @@
 import { Callout } from "nextra/components";
 
+import Container from '../../components/layout/container';
+import Row from '../../components/layout/row';
+import Column from '../../components/layout/column';
+
 # API Request
 
 <br />
 
 ### Sanctions Screening API
 
-<table>
-  <tbody>
-    <tr>
-      <td valign="top">
-        Screen **cases** (individuals, entities, vessels, crypto wallet IDs,
-        etc) for potential sanctions and other potential risk.
-        <Callout type="info">
-          **Batch screening** <br />
-          The **``` /search ```** endpoint accepts upto 1000 cases within a single
-          request for batch screening. Both individual and batch searches use the
-          same endpoint.
-        </Callout>
-      </td>
-      <td valign="top">
-        ```mdx filename="Endpoint" 
-        POST https://v4.ofac-api.com/search 
-        ```
-      </td>
-    </tr>
-  </tbody>
-</table>
+Screen **cases** (individuals, entities, vessels, crypto wallet IDs, etc) for potential sanctions and other potential risk.
+
+<Container>
+  <Row>
+    <Column>
+      <Callout type="info">
+        **Batch screening** <br />
+        The **``` /search ```** endpoint accepts upto 1000 cases within a single
+        request for batch screening. Both individual and batch searches use the
+        same endpoint.
+      </Callout>
+    </Column>
+    <Column>
+      ```mdx filename="Endpoint" 
+      POST https://v4.ofac-api.com/search 
+      ```
+    </Column>
+  </Row>
+</Container>
 
 <br />
 

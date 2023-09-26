@@ -1,0 +1,176 @@
+// Background Blur
+$background-blur-top-nav: 15px;
+$background-blur-dashboard-navigation: 10px;
+$background-blur-dropdown: 8px;
+$background-blur-modal-backdrop: 6px;
+
+// Border Radius
+$rounded-1:    0.125rem;
+$rounded-2:    0.25rem;
+$rounded-3:    0.5rem;
+$rounded-4:    0.75rem;
+$rounded-5:    1rem;
+$rounded-6:    2rem;
+$rounded-full: 9999px;
+
+// Box Shadow
+$shadow-1: 0 1px 4px 0 rgba(0, 0, 0, 0.04);
+$shadow-2: 0 1px 6px 0 rgba(0, 0, 0, 0.04);
+$shadow-3: 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+$shadow-4: 0 10px 25px -6px rgba(0, 0, 0, 0.08);
+$shadow-5: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+$shadow-6: 0 25px 50px -20px rgba(0, 0, 0, 0.12);
+
+$shadow-1-light: 0 1px 4px 0 rgba(255, 255, 255, 0.04);
+$shadow-2-light: 0 1px 6px 0 rgba(255, 255, 255, 0.04);
+$shadow-3-light: 0 4px 12px -2px rgba(255, 255, 255, 0.06);
+$shadow-4-light: 0 10px 25px -6px rgba(255, 255, 255, 0.08);
+$shadow-5-light: 0 20px 40px -10px rgba(255, 255, 255, 0.1);
+$shadow-6-light: 0 25px 50px -20px rgba(255, 255, 255, 0.12);
+
+// Colors
+$color-white: #fff;
+$color-black: #000;
+
+$color-gray-50:  #f3f7fa;
+$color-gray-100: #e5ebf0;
+$color-gray-200: #d3dbe0;
+$color-gray-300: #b7c6d1;
+$color-gray-400: #9aafbe;
+$color-gray-500: #829aaa;
+$color-gray-600: #708696;
+$color-gray-700: #5d707e;
+$color-gray-800: #4d5c66;
+$color-gray-900: #404a51;
+$color-gray-1000: #2d3439;
+$color-gray-1100: #0f1f29;
+
+$color-red-50:  #ffeaf1;
+$color-red-100: #ffbfd4;
+$color-red-200: #ff95b7;
+$color-red-300: #ff6a9a;
+$color-red-400: #ff407e;
+$color-red-500: #ff1561;
+$color-red-600: #ea0027;
+$color-red-700: #bf003e;
+$color-red-800: #950030;
+$color-red-900: #6a0022;
+$color-red-1000: #400015;
+$color-red-1100: #150007;
+
+$color-orange-50:  #fef6eb;
+$color-orange-100: #fde5c2;
+$color-orange-200: #fbd499;
+$color-orange-300: #f9c370;
+$color-orange-400: #f8b147;
+$color-orange-500: #f6a01e;
+$color-orange-600: #e18b09;
+$color-orange-700: #b87207;
+$color-orange-800: #8f5806;
+$color-orange-900: #663f04;
+$color-orange-1000: #3d2602;
+$color-orange-1100: #140d01;
+
+$color-yellow-50:  #fefdeb;
+$color-yellow-100: #fcf8c2;
+$color-yellow-200: #faf39a;
+$color-yellow-300: #f8ef72;
+$color-yellow-400: #f6ea49;
+$color-yellow-500: #f3e521;
+$color-yellow-600: #ded00b;
+$color-yellow-700: #b6aa09;
+$color-yellow-800: #8d8407;
+$color-yellow-900: #655f05;
+$color-yellow-1000: #3d3903;
+$color-yellow-1100: #141301;
+
+$color-green-50:  #e7fced;
+$color-green-100: #a8fac4;
+$color-green-200: #52ee98;
+$color-green-300: #39d985;
+$color-green-400: #2ebc72;
+$color-green-500: #29ab67;
+$color-green-600: #23955a;
+$color-green-700: #1b7d4a;
+$color-green-800: #15673c;
+$color-green-900: #0f5330;
+$color-green-1000: #0a3b21;
+$color-green-1100: #072212;
+
+$color-cyan-50:  #e1fcfb;
+$color-cyan-100: #9dfbf9;
+$color-cyan-200: #4df0ef;
+$color-cyan-300: #2ddad9;
+$color-cyan-400: #1cbcbb;
+$color-cyan-500: #159c9b;
+$color-cyan-600: #128686;
+$color-cyan-700: #0e7474;
+$color-cyan-800: #0a6261;
+$color-cyan-900: #064f4f;
+$color-cyan-1000: #053a39;
+$color-cyan-1100: #062121;
+
+$color-blue-50:  #ecf4fe;
+$color-blue-100: #bfd9fd;
+$color-blue-200: #97c1fc;
+$color-blue-300: #6fa9fb;
+$color-blue-400: #438ff9;
+$color-blue-500: #1b77f8;
+$color-blue-600: #0863e3;
+$color-blue-700: #0652bc;
+$color-blue-800: #043e90;
+$color-blue-900: #032d68;
+$color-blue-1000: #021c40;
+$color-blue-1100: #010813;
+
+$color-violet-50:  #edecfd;
+$color-violet-100: #c9c6f8;
+$color-violet-200: #a5a0f4;
+$color-violet-300: #817aef;
+$color-violet-400: #5e54eb;
+$color-violet-500: #3a2ee7;
+$color-violet-600: #2518d1;
+$color-violet-700: #1e14ab;
+$color-violet-800: #170f85;
+$color-violet-900: #110b5f;
+$color-violet-1000: #0a0739;
+$color-violet-1100: #030213;
+
+// Columns
+$column-count: 24;
+
+// Container Widths
+$container-width-lg: 1600px;
+$container-width-md: 1100px;
+$container-width-sm: 700px;
+$container-padding:  20px;
+
+// Responsive breakpoints
+
+$breakpoint-md: "only screen and (min-width: #{$container-width-sm})";
+$breakpoint-md-max: "only screen and (max-width: #{$container-width-sm})";
+$breakpoint-lg: "only screen and (min-width: #{$container-width-md})";
+$breakpoint-lg-max: "only screen and (max-width: #{$container-width-md})";
+$breakpoint-xl: "only screen and (min-width: #{$container-width-lg})";
+
+// Transitions
+$transition-speed-fast: 0.1s;
+$transition-speed:      0.15s;
+$transition-speed-slow: 0.5s;
+
+// Typography
+$font-system-default-sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+$font-system-default-sans-serif-2: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+$font-system-default-serif:      Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+$font-system-default-serif-2:    Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+$font-mono:                      Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+
+$font-size-x-large: 120%;
+$font-size-large:   110%;
+$font-size-small:   90%;
+$font-size-x-small: 80%;
+
+// Z-Index
+$z-index-behind-all: -1;
+$z-index-top-navigation: 100;
+$z-index-top-navigation-mobile-overlay: 200;

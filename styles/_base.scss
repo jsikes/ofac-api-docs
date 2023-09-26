@@ -1,0 +1,114 @@
+// Set box-sizing globally to handle padding and border widths
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+
+::selection {
+  background: $color-blue-600;
+  color: $color-white;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+// The base font-size is set at 62.5% for having the convenience
+// of sizing rems in a way that is similar to using px: 1.6rem = 16px
+html {
+  background-color: $color-white;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  line-height: 1.5;
+
+  // @media (prefers-color-scheme: dark) {
+  //   background-color: $color-black;
+  // }
+}
+
+// Default body styles
+body {
+  color: $color-black;
+  display: flex;
+  flex-direction: column;
+  font-family: $font-system-default-sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: inherit;
+  min-height: 100vh;
+  position: relative;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  // @media (prefers-color-scheme: dark) {
+  //   color: $color-gray-200;
+  // }
+}
+
+// Remove default margin
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  display: block;
+  margin: 0;
+}
+
+a {
+  transition: background-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+}
+
+// Make images block so they fit into containers
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+// Inherit fonts for buttons and inputs
+input,
+button,
+textarea,
+select {
+  accent-color: $color-green-800;
+  font: inherit;
+  margin: 0;
+}
+
+// Only allow users to increase height of textarea
+textarea {
+  resize: vertical;
+}
+
+// Always make bolder than container font weight
+b,
+strong {
+  font-weight: bolder;
+}
+
+// Remove all animations and transitions for people that prefer not to see them
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
