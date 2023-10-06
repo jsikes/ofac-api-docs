@@ -1,5 +1,10 @@
 {
   "index": "Overview & Features",
-  "request": "API Request",
+  "request": {
+    "title": "API Request",
+    "theme": {
+      "toc": false
+    }
+  },
   "response": "API Response"
 }

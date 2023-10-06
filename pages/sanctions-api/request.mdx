@@ -1,91 +1,211 @@
 import { Callout } from "nextra/components";
 
-import Container from '../../components/layout/container';
-import Row from '../../components/layout/row';
-import Column from '../../components/layout/column';
+import Container from "../../components/layout/container";
+import Row from "../../components/layout/row";
+import Column from "../../components/layout/column";
 
 # API Request
 
+## Sanctions Screening API
+
 <br />
 
-### Sanctions Screening API
-
-Screen **cases** (individuals, entities, vessels, crypto wallet IDs, etc) for potential sanctions and other potential risk.
 
 <Container>
   <Row>
     <Column>
+      Screen [cases](/glossary#case) (individuals, entities, vessels, crypto wallet IDs, etc) for 
+      sanctions and other potential risk.
+
       <Callout type="info">
         **Batch screening** <br />
-        The **``` /search ```** endpoint accepts upto 1000 cases within a single
-        request for batch screening. Both individual and batch searches use the
-        same endpoint.
+        The **``` /search ```** endpoint accepts up to 1000 cases within a
+        request for batch screening.
       </Callout>
+
     </Column>
     <Column>
-      ```mdx filename="Endpoint" 
-      POST https://v4.ofac-api.com/search 
+      ```mdx filename="Endpoint"
+      POST https://v4.ofac-api.com/search
+      ```
+    </Column>
+
+  </Row>
+</Container>
+
+
+
+### Request Object
+<Container>
+  <Row>
+    <Column >
+      **Attributes**
+      <hr />
+      
+      **```apiKey```** string REQUIRED\
+      Your organization's unique API key. 
+      ___
+
+      **```minScore```** integer\
+      The minimum similarty score of results to be returned. In other words, only
+      matches with a [similarty score](/glossary#similarity-score) equal to or greater than ```minScore``` will be included
+      in the result set.\
+      **Must be between 80 and 100.**\
+      A ```minScore``` of 95 is recommended. 
+      ___
+
+      **```sources```** list of strings\
+      Which sanction lists to screen against. An array of sanction list ID codes.\
+      For example, a value of ```["SDN", "EU"]{:json}``` will screen against the OFAC SDN and EU Financial Sanctions lists.\
+      See the [**Data Sources**](/datasources) page for available lists and their codes. 
+      ___
+
+      **```types```** list of strings\
+      Entity type filter. Only these entity types will be screened. \
+      Accepted values: ```person```, ```organization```, ```vessel```, ```aircraft```. 
+      ___
+
+      **```cases```** list\
+      List of Case items.
+      <details>
+        <summary>**Case Object**</summary>
+        <hr />
+        
+        **```name```** string REQUIRED\
+        Full name of the entity being screened.
+        ___
+
+        **```externalId```** string *RECOMMENDED*\
+        And ID or index number that maps this case to a search result when 
+        screening a batch of cases. 
+
+        ___
+        
+        **```type```** string\
+        The type of this entity.\
+        Accepted values: ```person```, ```organization```, ```vessel```, ```aircraft```. 
+        ___
+
+        **```dob```** string\
+        Date of birth.\
+        Format: ```YYYY-MM-DD```
+        ___
+
+        **```citizenship```** string\
+        Citizenship
+        ___
+
+        **```nationality```** string\
+        Nationality
+        ___
+
+        **```gender```** string\
+        Gender
+        ___
+
+        **```phoneNumber```** String\
+        Phone number
+        ___
+
+        **```emailAddress```** string\
+        Email address
+        ___
+
+        **```cryptoId```** string\
+        Crypto wallet ID
+        ___
+
+        **```address```** Address
+        <details>
+          <summary>**Address Object**</summary>
+          <hr />
+          
+          **```address1```** String\
+          Address line 1
+          ___
+
+          **```address2```** String\
+          Address line 2
+          ___
+
+          **```phoneNumber```** String\
+          Phone number
+          ___
+
+          **```city```** String\
+          Address city
+          ___
+
+          **```stateOrProvince```** String\
+          State or province
+          ___
+
+          **```postalCode```** String\
+          Postal code
+          ___
+
+          **```country```** String\
+          Country
+        </details>
+
+        **```identification```** List of ```Identification```
+        <details>
+          <summary>**Identification Object**</summary>
+          <hr />
+
+          **```type```** string\
+          ID type
+          ___
+
+          **```idNumber```** string\
+          ID number
+
+        </details>
+
+      </details>
+      
+    </Column>
+    <Column >
+      ```json filename="Request JSON" copy
+      {
+        "apiKey": "your-api-key",
+        "minScore": 95,
+        "source": [
+          "SDN", "NONSDN"
+        ],
+        "type": [
+          "individual"
+        ],
+        "cases": [{
+          "name": "string",
+          "type": "individual",
+          "dob": "YYYY-MM-DD",
+          "citizenship": "string",
+          "phoneNumber": "string",
+          "address": {
+            "address1": "string",
+            "address2": "string",
+            "city": "stringgo",
+            "stateOrProvince": "string",
+            "postalCode": "string",
+            "country": "string"
+          },
+          "passport": {
+            "passportNumber": "string",
+            "passportCountry": "string"
+          },
+          "driversLicense": {
+            "licenseCountry": "string",
+            "licenseNumber": "string"
+          },
+          "gender": "string",
+          "taxId": "string",
+          "digitalCurrencyAddress": "string"
+        }]
+      }
       ```
     </Column>
   </Row>
 </Container>
 
 <br />
-
-### Request Object
-
-<table>
-  <tbody>
-    <tr>
-      <td valign="top">
-        **Attributes**
-        <hr />
-        <code>apiKey</code>
-      </td>
-
-      <td valign="top">
-```json filename="Request JSON"
-{
-  "apiKey": "your-api-key",
-  "minScore": 95,
-  "source": [
-    "SDN", "NONSDN"
-  ],
-  "type": [
-    "individual"
-  ],
-  "cases": [
-    {
-      "name": "Miguel Orejuela",
-      "dob": "1943-11-23",
-      "citizenship": "Columbia",
-      "phoneNumber": "6095803",
-      "type": "individual",
-      "address": {
-        "address1": "Casa 19",
-        "address2": "Unit 1",
-        "city": "Avenida Lago",
-        "stateOrProvince": "Ciudad Jardin",
-        "postalCode": "60",
-        "country": "Columbia"
-      },
-      "passport": {
-        "passportNumber": "9652210458739",
-        "passportCountry": "Columbia"
-      },
-      "driversLicense": {
-        "licenseCountry": "Columbia",
-        "licenseNumber": "g400-393-49053"
-      },
-      "gender": "male",
-      "taxId": "48930059",
-      "digitalCurrencyAddress": "0xa7e5d5a720f06526557c513402f2e6b5fa20b008"
-    }
-  ]
-}
-```
-      </td>
-    </tr>
-
-  </tbody>
-</table>
