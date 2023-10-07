@@ -1,0 +1,40 @@
+import { Callout } from "nextra/components";
+
+import Container from "../../components/layout/container";
+import Row from "../../components/layout/row";
+import Column from "../../components/layout/column";
+
+# API Response
+
+## Errors and Error Messages
+
+The **Sanctions API** returns error status using both HTTP codes and ```errorMessages``` within
+the response body. 
+<Callout>
+  **Always check ```error``` and ```errorMessage```** fields\
+  An ```error``` status and ```errorMessage``` may be returned _regardless_ of HTTP status code, and
+  should always be examined.\
+  For example, the API may return a succesful search result but indicidate the account is currently over its monthly limit.
+</Callout>
+
+### Error Parameters
+The API response object contains an ```error``` field of type **boolean** and an optional ```errorMessage``` field of type **string**. 
+These fields are used to report non-technical problems such as account overage and invalid search parameters. 
+These messages should be reported to end users.
+
+### HTTP Status Codes
+The API typically returns the following ```HTTP status codes```.
+
+<br />
+
+| Code   | Status | Description |
+| :----- | :----: | ----: |
+| 200 |  Success   |   Succesfully screened and returned any match results. ```error``` and ```errorMessage``` should still be examined. |
+| 400 | Bad Request  |  The API found something wrong with request and was unable to process it. This can be caused by incorrect JSON structure, missing ```Content-Type``` header or invalid parameters options for format.  |
+
+
+
+## Response Structure
+
+<br />
+

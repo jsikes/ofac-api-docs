@@ -6,5 +6,10 @@
       "toc": false
     }
   },
-  "response": "API Response"
+  "response": {
+    "title": "API Response",
+    "theme": {
+      "toc": true
+    }
+  }
 }

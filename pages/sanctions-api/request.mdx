@@ -15,11 +15,17 @@ import Column from "../../components/layout/column";
   <Row>
     <Column>
       Screen [cases](/glossary#case) (individuals, entities, vessels, crypto wallet IDs, etc) for 
-      sanctions and other potential risk.
+      sanctions and other potential risks.
+
+      <Callout type="info">
+        **Required Content Type Header** <br />
+        The **``` /search ```** API requires a ```Content-Type``` header of ```application/json```. 
+        Learn more about [Conent-Type Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type).
+      </Callout>
 
       <Callout type="info">
         **Batch screening** <br />
-        The **``` /search ```** endpoint accepts up to 1000 cases within a
+        The **``` /search ```** API accepts up to 1000 cases within a
         request for batch screening.
       </Callout>
 
@@ -46,9 +52,9 @@ import Column from "../../components/layout/column";
       Your organization's unique API key. 
       ___
 
-      **```minScore```** integer\
-      The minimum similarty score of results to be returned. In other words, only
-      matches with a [similarty score](/glossary#similarity-score) equal to or greater than ```minScore``` will be included
+      **```minScore```** integer DEFAULT 95\
+      The minimum [similarty score](/glossary#similarity-score) of results to be returned. In other words, only
+      matches with a similarty score equal to or greater than ```minScore``` will be included
       in the result set.\
       **Must be between 80 and 100.**\
       A ```minScore``` of 95 is recommended. 
@@ -66,7 +72,7 @@ import Column from "../../components/layout/column";
       ___
 
       **```cases```** list\
-      List of Case items.
+      List of ```Case``` items.
       <details>
         <summary>**Case Object**</summary>
         <hr />
@@ -76,19 +82,30 @@ import Column from "../../components/layout/column";
         ___
 
         **```externalId```** string *RECOMMENDED*\
-        And ID or index number that maps this case to a search result when 
-        screening a batch of cases. 
+        And ID or index number used to map search results back to search cases in **batch** requests.
+
+        If provided, the ```externalId``` field is copied to the search result allowing
+        you to map the result back to a searched case.\
+        If ```externalId``` is not provided, mapping must done using the ```name``` field, which 
+        may be problematic if 2 cases have the same name. 
+        
 
         ___
         
         **```type```** string\
         The type of this entity.\
-        Accepted values: ```person```, ```organization```, ```vessel```, ```aircraft```. 
+        Accepted values: ```person```, ```organization```, ```vessel```, ```aircraft```.\
+        **Note** Providing this field does not enable type filtering. 
+        To filter based on type, use the top level ```types``` parameter. 
         ___
 
         **```dob```** string\
         Date of birth.\
         Format: ```YYYY-MM-DD```
+        ___
+
+        **```gender```** string\
+        Gender
         ___
 
         **```citizenship```** string\
@@ -99,11 +116,7 @@ import Column from "../../components/layout/column";
         Nationality
         ___
 
-        **```gender```** string\
-        Gender
-        ___
-
-        **```phoneNumber```** String\
+        **```phoneNumber```** string\
         Phone number
         ___
 
@@ -119,89 +132,105 @@ import Column from "../../components/layout/column";
         <details>
           <summary>**Address Object**</summary>
           <hr />
-          
-          **```address1```** String\
+
+          **```address1```** string\
           Address line 1
           ___
 
-          **```address2```** String\
+          **```address2```** string\
           Address line 2
           ___
 
-          **```phoneNumber```** String\
+          **```phoneNumber```** string\
           Phone number
           ___
 
-          **```city```** String\
+          **```city```** string\
           Address city
           ___
 
-          **```stateOrProvince```** String\
+          **```stateOrProvince```** string\
           State or province
           ___
 
-          **```postalCode```** String\
+          **```postalCode```** string\
           Postal code
           ___
 
-          **```country```** String\
+          **```country```** string\
           Country
         </details>
 
-        **```identification```** List of ```Identification```
+        **```identification```**  list\
+        List of ```Identification``` items.\
+        An ```Identification``` can represent any form of ID including passport, tax ID (TIN), drivers license,
+        social credit ID, military ID, and more.
+
+        **Note** ```Identification``` items are screened based on ```idNumber``` and ```country```, while 
+        ```type``` is provided for additional context. This means a sanction match may be returned with a matching
+        ```idNumber``` but different a ```type``` value.
+         
         <details>
           <summary>**Identification Object**</summary>
           <hr />
 
+          **```idNumber```** string\
+          ID number
+          ___
           **```type```** string\
           ID type
           ___
 
-          **```idNumber```** string\
-          ID number
-
+          **```country```** string\
+          ID country
+        
         </details>
 
       </details>
       
     </Column>
+
     <Column >
       ```json filename="Request JSON" copy
       {
-        "apiKey": "your-api-key",
-        "minScore": 95,
-        "source": [
-          "SDN", "NONSDN"
-        ],
-        "type": [
-          "individual"
-        ],
-        "cases": [{
-          "name": "string",
-          "type": "individual",
-          "dob": "YYYY-MM-DD",
-          "citizenship": "string",
-          "phoneNumber": "string",
-          "address": {
-            "address1": "string",
-            "address2": "string",
-            "city": "stringgo",
-            "stateOrProvince": "string",
-            "postalCode": "string",
-            "country": "string"
-          },
-          "passport": {
-            "passportNumber": "string",
-            "passportCountry": "string"
-          },
-          "driversLicense": {
-            "licenseCountry": "string",
-            "licenseNumber": "string"
-          },
-          "gender": "string",
-          "taxId": "string",
-          "digitalCurrencyAddress": "string"
-        }]
+          "apiKey": "your-api-key",
+          "minScore": 95,
+          "sources": [
+              "SDN",
+              "NONSDN"
+          ],
+          "types": [
+              "individual"
+          ],
+          "cases": [
+              {
+                  "name": "string",
+                  "externalId": "string",
+                  "type": "individual",
+                  "dob": "YYYY-MM-DD",
+                  "gender": "string",
+                  "citizenship": "string",
+                  "nationality": "string",
+                  "phoneNumber": "string",
+                  "emailAddress": "string",
+                  "cryptoId": "string",
+                  "address": {
+                      "address1": "string",
+                      "address2": "string",
+                      "city": "stringgo",
+                      "stateOrProvince": "string",
+                      "postalCode": "string",
+                      "country": "string"
+                  },
+                  "identification": [
+                      {
+                          "type": "string",
+                          "idNumber": "string",
+                          "country": "string"
+                      }
+                  ]
+              }
+          ]
       }
       ```
     </Column>
