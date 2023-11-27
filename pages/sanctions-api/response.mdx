@@ -31,6 +31,7 @@ The API typically returns the following ```HTTP status codes```.
 | :----- | :----: | ----: |
 | 200 |  Success   |   Succesfully screened and returned any match results. ```error``` and ```errorMessage``` should still be examined. |
 | 400 | Bad Request  |  The API found something wrong with request and was unable to process it. This can be caused by incorrect JSON structure, missing ```Content-Type``` header or invalid parameters options for format.  |
+| 401 | Unauthorized  |  Invalid or unauthorized API key.  |
 
 
 
