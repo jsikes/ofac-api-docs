@@ -10,5 +10,10 @@ A sanctioned individual or entity, in other words a ***sanction target***. Sanct
 of **targets** that appear similar to the [case](#case) being screened.  
 
 ### Similarity Score
-A score between 0 and 100 that represents the level of similairty between a [case](#case) and a sanction target. 
+A score between 0 and 100 that represents the level of similairty between a [case](#case) and a [sanction target](#target). 
 The higher the score, the more similar the API considers the case and sanction target.
+
+### The ```minScore``` Setting
+When a [case](/glossary#case) is screened, it is compared against each [target](/glossary#target) within
+the sanctions database and given a *similarity score*. The results returned by the API are those [targets](/glossary#target) 
+whose similarity score is greater than or equal to the ```minScore``` API parameter you provide. 

@@ -1,10 +1,10 @@
-import { Tabs, Tab } from 'nextra/components'
 import { Callout } from 'nextra/components'
 
 # Welcome
-This is the documentation for OFAC-API.com's web services, which are used to automate KYC and other
-compliance obligations such as sanctions checks and reporting. 
-Below you will find common API examples, helpful resources and a quick start guide and next steps.<br />
+This documentation covers the current version of OFAC-API.com's web services which provide santions search and screening for use in 
+KYC, AML and other compliance requirements. 
+
+Below you will find descriptions of the API services, common examples, code resources and a quick start guide.<br />
 
 <Callout type="info">
 **Base API URL** <br />
@@ -12,70 +12,20 @@ Below you will find common API examples, helpful resources and a quick start gui
 </Callout>
 
 ## General Information
-The [Sanctions API](/sanctions-api) is a JSON based web service that accepts HTTPS **<code>POST</code>** requests. <br />
-Each API requests consists of:
-1. [Authentication](/authentication) in the form of an ```apiKey``` header or parameter.
-2. Information on the [Case](/glossary#case) (individual, entity, etc) you are screening. For example **name** and **address**.
-3. Search configuration settings including which [Data Sources](/datasources) to screen against.
+The [Sanctions Screening API](/screening-api) screens individuals, entities, vehicles and IDs against 
+the [sanctions database](/datasources) using Fuzzy Logic to determine similarity 
+and returns sanction report and match summary for any matches found.
 
 ## Quick start
-To get started, ensure you have an active API key and review the code examples below. 
+To quickly get started, ensure you have an active API key and review code examples for each API. 
 In addition to the code examples, you may download our [Postman collection](/postman) which
-contain a ready to use example request. 
-
-### Code Examples
-The code snippets below demonstrate a basic API request used to screen a single 
-individual, **Abu Abbas**, against the OFAC SDN and EU data sets. To execute these snippets, 
-replace <code>**your-api-key**</code> with your API key in your code.
-
-<Tabs items={['CURL', 'JS', 'Java']}>
-  <Tab>
-  ```c copy
-  curl 
-  -X POST https://search.ofac-api.com/v3 
-  -d '{"apiKey": "your-api-key", "source": ["SDN", "EU"], "cases": [{"name": "Abu Abbas"}]}' 
-  -H "Content-Type: application/json"
-  ```
-  </Tab>
-  <Tab>
-  ```js showLineNumbers copy
-  fetch('https://search.ofac-api.com/v3',
-    {
-      Method: 'POST',
-      Body: JSON.stringify({
-        "apiKey": "your-api-key",
-        "source": ["SDN", "EU"],
-        "cases": [{
-            "name": "Abu Abbas"
-          }]
-      }),
-    }
-  )
-  ```
-  </Tab>
-  <Tab>
-  ```java showLineNumbers copy
-  OkHttpClient client = new OkHttpClient();
-
-  RequestBody body = RequestBody.create(
-      MediaType.parse("application/json"), yourJsonRequest);
-
-  Request request = new Request.Builder()
-      .url("https://search.ofac-api.com/v3")
-      .post(body)
-      .build();
-
-  Call call = client.newCall(request);
-  Response response = call.execute();
-  ```
-  </Tab>
-</Tabs>
+contains ready to use example API requests. 
 
 ### Next Steps
 Once you've made a successful API request, we recommend the following 
-1. Review additional [API parameters](/sanctions-api/request) to further customize the screening process.
-2. Review the list of [Data Sources](/datasources) available for screening.
-3. Review the optional [Search Data Fields](/sanctions-api/request) that can be used for screening.
+1. Review additional API parameters to further customize your API functionality
+2. Review the list of [Data Sources](/datasources) available for screening
+3. Review the optional [Search Data Fields](/sanctions-api/request) that can be used for screening
 
 
 

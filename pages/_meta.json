@@ -1,7 +1,7 @@
 {
   "index": "Introduction",
   "authentication": "Authentication",
-  "sanctions-api": {
+  "screening-api": {
     "title": "Sanctions Screening API"
   },
   "datasources": "Data Sources"

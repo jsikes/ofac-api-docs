@@ -6,10 +6,184 @@ import Column from "../../components/layout/column";
 
 # API Response
 
-## Errors and Error Messages
+## Response Object
+<Container>
+  <Row>
+    <Column>
+      **Properties**
+      
+      ```sources```\
+      Each API response returns metadata on the sanction lists that were screened against.\
+      This includes sanction list publish and download dates, the lists name and country, and the
+      current total records contained in the list.  
+      ___
 
-The **Sanctions API** returns error status using both HTTP codes and ```errorMessages``` within
+      ```results```\
+      The result for each screened [case](/glossary#case). The ```Result``` object contains:
+      * The original case name that was screened
+      * The ```externalId``` of the case for mapping (if one was provided). More about [```externalId```](/screening-api/request#request-object). 
+      * Any ```matches``` (hits) that were found
+      ___
+
+      ```matches```\
+      Each ```result``` contains 0 to many ```match``` items and each 
+      ```match``` consists of a ```score```, ```matchSummary``` and ```sanction```. 
+      ___
+      
+      ```sanction```\
+      The ```sanction``` item represents the [sanctiom target](/glossary#target) that
+      was found to be similar to dsjf0sdijf0sidjf0
+      ___
+
+      ```matchSummary```\
+      It may not be obvious why a match was returned by the Screening API, 
+      especially if you provide optional [case](/glossary#case) information such as 
+      address, ID, date of birth, etc. 
+
+      To help quickly identify the similarity between a match and the screened [case](/glossary#case), 
+      the Screening API returns a ```matchSummary``` object that lists which fields triggered the match. 
+      The ```matchSummary``` can be useful in providing an explanation of a match to end users. 
+
+    </Column>
+    <Column>
+      ```json filename="Response JSON" copy
+      {
+        "error": false,
+        "errorMessage": "string",
+        "sources": [
+          {
+            "source": "string",
+            "name": "string",
+            "country": "string",
+            "totalRecords": 1000,
+            "publishDate": "2023-12-09",
+            "downloadDate": "2023-12-05T18:02:29.147784"
+          }
+        ],
+        "results": [
+          {
+            "externalId": "string",
+            "name": "name",
+            "matchCount": 1,
+            "matches": [
+              {
+                "score": 95,
+                "matchSummary": {
+                  "matchField":[
+                    {
+                      "fieldName": "string",
+                      "caseField": "string",
+                      "caseFieldNote": "string",
+                      "sanctionField": "string",
+                      "sanctionFieldNote": "string",
+                      "sanctionFieldId": "string"
+                    }
+                  ],
+                  "matchAddress": [
+                    {
+                      "caseAddress": {
+                        "address1": "string",
+                        "address2": "string",
+                        "address3": "string",
+                        "address4": "string",
+                        "city": "string",
+                        "stateOrProvince": "string",
+                        "postalCode": "string",
+                        "country": "string"
+                      },
+                      "sanctionAddress": {
+                        "address1": "string",
+                        "address2": "string",
+                        "address3": "string",
+                        "address4": "string",
+                        "city": "string",
+                        "stateOrProvince": "string",
+                        "postalCode": "string",
+                        "country": "string"
+                      }
+                    }
+                  ],
+                  "matchId": [
+                    {
+                      "caseIdentification": {
+                        "type": "string",
+                        "idNumber": "string",
+                        "country": "string",
+                        "issueDate": "string",
+                        "expirationDate": "string"
+                      },
+                      "sanctionIdentification": {
+                        "type": "string",
+                        "idNumber": "string",
+                        "country": "string",
+                        "issueDate": "string",
+                        "expirationDate": "string"
+                      }
+                    }
+                  ]
+                },
+                "sanction": {
+                  "type": "String",
+                  "firstName": "string",
+                  "middleName": "string",
+                  "lastName": "string",
+                  "title": "string",
+                  "gender": "string",
+                  "dob": ["string"],
+                  "citizenship": ["string"],
+                  "nationality": ["string"],
+                  "position": ["string"],
+                  "education": ["string"],
+                  "phoneNumber": ["string"],
+                  "website": ["string"],
+                  "emailAddress": ["string"],
+                  "ids": [
+                    {
+                      "type": "string",
+                      "idNumber": "string",
+                      "country": "string",
+                      "issueDate": "string",
+                      "expirationDate": "string"
+                    }
+                  ],
+                  "address": [
+                    {
+                      "address1": "string",
+                      "address2": "string",
+                      "address3": "string",
+                      "address4": "string",
+                      "city": "string",
+                      "stateOrProvince": "string",
+                      "postalCode": "string",
+                      "country": "string"
+                    }
+                  ],
+                  "cryptoWallet": [
+                    {
+                      "publicKey": "string"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+      ```
+    </Column>
+  </Row>
+</Container>
+
+## Error Codes and Messages
+
+The **Sanctions Screening API** returns error status using both HTTP codes and ```errorMessages``` within
 the response body. 
+
+### The ```error``` and ```errorMessage``` Properties
+API responses contain an ```error``` field of type **boolean** and an optional ```errorMessage``` field of type **string**. 
+These fields are used to report problems such as account overage and invalid search parameters and can be useful in
+troubleshooting problems.
+
 <Callout>
   **Always check ```error``` and ```errorMessage```** fields\
   An ```error``` status and ```errorMessage``` may be returned _regardless_ of HTTP status code, and
@@ -17,25 +191,19 @@ the response body.
   For example, the API may return a succesful search result but indicidate the account is currently over its monthly limit.
 </Callout>
 
-### Error Parameters
-The API response object contains an ```error``` field of type **boolean** and an optional ```errorMessage``` field of type **string**. 
-These fields are used to report non-technical problems such as account overage and invalid search parameters. 
-These messages should be reported to end users.
+
 
 ### HTTP Status Codes
-The API typically returns the following ```HTTP status codes```.
+The API also returns success and error status via the ```HTTP``` status codes below.
 
 <br />
 
 | Code   | Status | Description |
 | :----- | :----: | ----: |
-| 200 |  Success   |   Succesfully screened and returned any match results. ```error``` and ```errorMessage``` should still be examined. |
-| 400 | Bad Request  |  The API found something wrong with request and was unable to process it. This can be caused by incorrect JSON structure, missing ```Content-Type``` header or invalid parameters options for format.  |
+| 200 |  Success   |   Succesfully screened and returned any match results. ```error``` and ```errorMessage``` may still be present. |
+| 400 | Bad Request  |  Something is wrong with request and it cannot be processed. This can be invalid JSON, missing ```Content-Type``` header or invalid parameters options.  |
 | 401 | Unauthorized  |  Invalid or unauthorized API key.  |
+| 500 | Internal Server Error  |  A server error occured and the request was not able to be processed. |
 
 
-
-## Response Structure
-
-<br />
 

@@ -1,0 +1,55 @@
+import { Callout } from "nextra/components";
+
+import Container from "../../components/layout/container";
+import Row from "../../components/layout/row";
+import Column from "../../components/layout/column";
+import { Tabs, Tab } from 'nextra/components'
+
+# Examples
+
+The examples below demonstrate a various use cases for the **Sanctions Screening API**.
+The examples are in the form of JSON request bodies which may be sent to the API via 
+HTTP ```POST``` requests. 
+
+<Tabs items={['CURL', 'JS', 'Java']}>
+  <Tab>
+  ```c copy
+  curl 
+  -X POST https://api.ofac-api.com/v4/screen
+  -d '{"apiKey": "your-api-key", "source": ["SDN", "EU"], "cases": [{"name": "Abu Abbas"}]}' 
+  -H "Content-Type: application/json"
+  ```
+  </Tab>
+  <Tab>
+  ```js showLineNumbers copy
+  fetch('https://search.ofac-api.com/v3',
+    {
+      Method: 'POST',
+      Body: JSON.stringify({
+        "apiKey": "your-api-key",
+        "source": ["SDN", "EU"],
+        "cases": [{
+            "name": "Abu Abbas"
+          }]
+      }),
+    }
+  )
+  ```
+  </Tab>
+  <Tab>
+  ```java showLineNumbers copy
+  OkHttpClient client = new OkHttpClient();
+
+  RequestBody body = RequestBody.create(
+      MediaType.parse("application/json"), yourJsonRequest);
+
+  Request request = new Request.Builder()
+      .url("https://search.ofac-api.com/v3")
+      .post(body)
+      .build();
+
+  Call call = client.newCall(request);
+  Response response = call.execute();
+  ```
+  </Tab>
+</Tabs>

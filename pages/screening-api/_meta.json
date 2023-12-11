@@ -11,5 +11,11 @@
     "theme": {
       "toc": true
     }
+  },
+  "examples": {
+    "title": "Examples",
+    "theme": {
+      "toc": true
+    }
   }
 }
